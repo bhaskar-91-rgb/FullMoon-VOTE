@@ -82,4 +82,4 @@ The GitHub Actions pipeline (`.github/workflows/ci.yml`) runs automatically on e
 2. **Frontend Validation**: Sets up Node.js, installs all dependencies, runs the ESLint linter, executes the full Vitest test suite, and finally builds the production bundle to verify that the application compiles without errors.
 
 ## Product Proposal
-See PROPOSAL.md for details regarding the product use cases, data model, and feasibility for Mainnet.
+See `PROPOSAL.md` for details regarding the product use cases, data model, and feasibility for Mainnet.
