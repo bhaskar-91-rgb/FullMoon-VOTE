@@ -5,22 +5,9 @@ import type { CastVoteResult, ElectionPublicState, ElectionStatus, VoteChoice } 
  * votingSimulator.ts
  * -------------------------------------------------------------------------
  * A pure, in-memory mirror of the public ledger transitions defined in
- * `contract/src/private-voting.compact`:
+ * `contract/src/private-voting.compact`.
  *
- *   - status: ElectionStatus            <-> this.status
- *   - yesVotes / noVotes: Counter       <-> this.yesVotes / this.noVotes
- *   - nullifierUsed: Map<Bytes32,Bool>  <-> this.nullifiers (Set)
- *   - round: Counter                    <-> this.round
- *
- * Every method here corresponds 1:1 to an exported circuit in the contract
- * and enforces the exact same invariants (election must be OPEN to vote,
- * a nullifier may only be consumed once, admin gating on open/close).
- *
- * This class powers both:
- *   (a) "Demo mode" in the UI, so the full flow can be exercised without a
- *       deployed contract / running node, and
- *   (b) The unit test suite in `src/test/votingSimulator.test.ts`, which
- *       is what satisfies this submission's "3+ passing tests" bar.
+ * Persists to localStorage so the UI state survives page refreshes!
  * -------------------------------------------------------------------------
  */
 export class VotingSimulator {
@@ -29,10 +16,46 @@ export class VotingSimulator {
   private _yesVotes = 0;
   private _noVotes = 0;
   private _round = 0;
-  private readonly _nullifiers = new Set<string>();
+  private _nullifiers = new Set<string>();
 
   constructor(electionId: string) {
     this.electionId = electionId;
+    this.loadState();
+  }
+
+  private getStorageKey(): string {
+    return `fullmoon_sim_state_${this.electionId}`;
+  }
+
+  private loadState(): void {
+    if (typeof window === 'undefined') return;
+    const stored = window.localStorage.getItem(this.getStorageKey());
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored);
+        this._status = parsed.status ?? 'CREATED';
+        this._yesVotes = parsed.yesVotes ?? 0;
+        this._noVotes = parsed.noVotes ?? 0;
+        this._round = parsed.round ?? 0;
+        if (Array.isArray(parsed.nullifiers)) {
+          this._nullifiers = new Set(parsed.nullifiers);
+        }
+      } catch (e) {
+        console.error('Failed to parse simulator state', e);
+      }
+    }
+  }
+
+  private saveState(): void {
+    if (typeof window === 'undefined') return;
+    const toStore = {
+      status: this._status,
+      yesVotes: this._yesVotes,
+      noVotes: this._noVotes,
+      round: this._round,
+      nullifiers: Array.from(this._nullifiers)
+    };
+    window.localStorage.setItem(this.getStorageKey(), JSON.stringify(toStore));
   }
 
   get state(): ElectionPublicState {
@@ -45,32 +68,26 @@ export class VotingSimulator {
     };
   }
 
-  /** Mirrors `openElection`. */
   openElection(): void {
     if (this._status !== 'CREATED') {
       throw new Error('Election has already been opened');
     }
     this._status = 'OPEN';
+    this.saveState();
   }
 
-  /** Mirrors `closeElection`. */
   closeElection(): void {
     if (this._status !== 'OPEN') {
       throw new Error('Election is not currently open');
     }
     this._status = 'CLOSED';
+    this.saveState();
   }
 
-  /** Mirrors `hasVoted` (a read-only circuit). */
   hasNullifierVoted(nullifier: string): boolean {
     return this._nullifiers.has(nullifier);
   }
 
-  /**
-   * Mirrors `castVote`. Takes the voter's locally-held secret, derives the
-   * nullifier exactly as the circuit does, checks/records it, and updates
-   * the appropriate public counter. Never stores or logs the secret itself.
-   */
   async castVote(secretHex: string, choice: VoteChoice): Promise<CastVoteResult> {
     if (this._status !== 'OPEN') {
       return { ok: false, message: 'Voting is not currently open.' };
@@ -89,12 +106,12 @@ export class VotingSimulator {
       this._noVotes += 1;
     }
     this._round += 1;
+    this.saveState();
 
     return { ok: true, message: 'Ballot recorded.', nullifier };
   }
 }
 
-/** Computes the winner label purely from public tallies (no private data touched). */
 export function computeResult(state: ElectionPublicState): 'YES' | 'NO' | 'TIE' | 'PENDING' {
   if (state.status !== 'CLOSED') return 'PENDING';
   if (state.yesVotes === state.noVotes) return 'TIE';
