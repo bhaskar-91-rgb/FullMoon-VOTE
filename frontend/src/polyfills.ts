@@ -59,3 +59,5 @@ if (typeof window !== "undefined") {
 })();
 
 export { Buffer };
+
+// End of polyfills
