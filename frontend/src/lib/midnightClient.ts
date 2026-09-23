@@ -73,14 +73,14 @@ export function createLiveClient(electionId: string): ElectionClient {
       }
 
       // Successful on-chain open — sync simulator too
-      try { sim.openElection(); } catch (_) { /* already open locally is fine */ }
+      try { sim.openElection(); } catch { /* already open locally is fine */ }
       return tx;
     },
 
     async closeElection(): Promise<{ txId: string; explorerUrl: string }> {
       const tx = await callContractCircuit('closeElection', { adminSkHex });
       if (!tx.ok) throw new Error(tx.error);
-      try { sim.closeElection(); } catch (_) { /* ignore if already closed */ }
+      try { sim.closeElection(); } catch { /* ignore if already closed */ }
       return tx;
     },
 
