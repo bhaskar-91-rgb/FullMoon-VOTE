@@ -2,6 +2,7 @@
   "name": "@midnight-private-vote/frontend",
   "private": true,
   "version": "1.0.0",
+  "description": "fullMoon Private Voting Application",
   "type": "module",
   "scripts": {
     "dev": "vite",
