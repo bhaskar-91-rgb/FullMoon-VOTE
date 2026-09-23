@@ -8,7 +8,7 @@
 https://full-moon-vote-frontend.vercel.app/
 
 ## Demo Video
-🎥 [Watch the 1-Minute Walkthrough Video (Google Drive)](https://drive.google.com/file/d/11MNbJvkCL1UbieQZ1uxAZYR0mx3k7JFq/view?usp=sharing)
+🎥 [Watch the 1-Minute Walkthrough Video (Google Drive)](https://drive.google.com/file/d/13jqOPgF_4UJsbL_pL8PsCl0TxIu56icn/view?usp=sharing)
 
 ## Contract Address
 | Network  | Address                          |
