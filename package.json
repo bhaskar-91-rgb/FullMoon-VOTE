@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "description": "Anonymous ballots with publicly verifiable tallies, built on Midnight (Level 3 - First Quarter).",
   "workspaces": [
-    "frontend"
+    "frontend",
+    "preprod-deployment/contracts"
   ],
   "scripts": {
     "dev": "npm run dev --workspace frontend",

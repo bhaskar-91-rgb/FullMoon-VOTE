@@ -5,12 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "mkdir -p public && rm -rf public/managed && cp -r ../preprod-deployment/contracts/src/managed public/managed && tsc -b && vite build",
+    "build": "cd ../preprod-deployment/contracts && npm run build && cd ../../frontend && mkdir -p public && rm -rf public/managed && cp -r ../preprod-deployment/contracts/src/managed public/managed && tsc -b && vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:ci": "vitest run --reporter=verbose --coverage"
+    "test:ci": "cd ../preprod-deployment/contracts && npm run build && cd ../../frontend && vitest run --reporter=verbose --coverage"
   },
   "dependencies": {
     "@midnight-ntwrk/bboard-contract": "file:../preprod-deployment/contracts",
