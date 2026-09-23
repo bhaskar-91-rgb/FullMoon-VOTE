@@ -22,13 +22,16 @@ https://full-moon-vote-frontend.vercel.app/
 
 ## Screenshots
 
-**Product UI:**
+**Product UI — fullMoon voting dashboard with Glassmorphism design:**
 ![Product UI](screenshots/product%20ui.png)
 
-**Contract Address Verification:**
-![Contract Address](screenshots/contract%20address.png)
+**Contract Deployed On-Chain — verified on Midnight Preprod Explorer:**
+![Contract On Chain](screenshots/contract%20on%20chain.png)
 
-**Test Output:**
+**Successful Transaction — openElection ZK proof submitted on Preprod:**
+![Transaction Success](screenshots/transaction%20sucess.png)
+
+**Test Output — all 23 tests passing (circuit logic, state transitions, privacy):**
 ![Test Output](screenshots/test%20output.png)
 
 ## What This Does
