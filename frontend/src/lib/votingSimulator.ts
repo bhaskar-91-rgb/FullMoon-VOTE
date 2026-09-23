@@ -76,6 +76,13 @@ export class VotingSimulator {
     this.saveState();
   }
 
+  /** Force-set status to OPEN regardless of current state.
+   *  Used when the on-chain state says OPEN but local sim is out of sync. */
+  forceSetOpen(): void {
+    this._status = 'OPEN';
+    this.saveState();
+  }
+
   closeElection(): void {
     if (this._status !== 'OPEN') {
       throw new Error('Election is not currently open');

@@ -55,15 +55,32 @@ export function createLiveClient(electionId: string): ElectionClient {
     async openElection(): Promise<{ txId: string; explorerUrl: string }> {
       // Constructs ZK transaction via Midnight SDK and prompts wallet
       const tx = await callContractCircuit('openElection', { adminSkHex });
-      if (!tx.ok) throw new Error(tx.error);
-      sim.openElection();
+
+      if (!tx.ok) {
+        // If the blockchain says it's already open, the on-chain state IS open.
+        // Force-sync the local simulator to OPEN so the UI reflects reality.
+        const alreadyOpen =
+          tx.error?.includes('Election has already been opened') ||
+          tx.error?.includes('already been opened') ||
+          tx.error?.includes('already open');
+
+        if (alreadyOpen) {
+          // Force the simulator to OPEN state (bypasses the CREATED-only guard)
+          sim.forceSetOpen();
+          return { txId: 'already_open_on_chain', explorerUrl: '' };
+        }
+        throw new Error(tx.error);
+      }
+
+      // Successful on-chain open — sync simulator too
+      try { sim.openElection(); } catch (_) { /* already open locally is fine */ }
       return tx;
     },
 
     async closeElection(): Promise<{ txId: string; explorerUrl: string }> {
       const tx = await callContractCircuit('closeElection', { adminSkHex });
       if (!tx.ok) throw new Error(tx.error);
-      sim.closeElection();
+      try { sim.closeElection(); } catch (_) { /* ignore if already closed */ }
       return tx;
     },
 
@@ -72,7 +89,7 @@ export function createLiveClient(electionId: string): ElectionClient {
       const tx = await callContractCircuit('castVote', { voterSecretHex: secretHex, choice });
       if (!tx.ok) throw new Error(tx.error);
 
-      const baseResult = sim.castVote(secretHex, choice);
+      const baseResult = await sim.castVote(secretHex, choice);
       return {
         ...baseResult,
         txId: tx.txId,
