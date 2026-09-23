@@ -1,0 +1,43 @@
+name: Deploy Contract to Preprod
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy Midnight Contract
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+          cache-dependency-path: 'preprod-deployment/package-lock.json'
+
+      - name: Install Compact toolchain
+        run: |
+          curl --proto '=https' --tlsv1.2 -LsSf https://github.com/midnightntwrk/compact/releases/latest/download/compact-installer.sh | sh
+          echo "$HOME/.compact/bin" >> "$GITHUB_PATH"
+
+      - name: compact update
+        run: compact update 0.31.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install Dependencies
+        working-directory: ./preprod-deployment
+        run: npm install
+
+      - name: Build Contract and CLI
+        working-directory: ./preprod-deployment
+        run: npm run build:contract && npm run build:cli
+
+      - name: Deploy Contract
+        working-directory: ./preprod-deployment
+        env:
+          # Make sure to set this secret in your repository settings!
+          WALLET_SEED: ${{ secrets.WALLET_SEED }}
+        run: npm run contracts:deploy -- --network preprod --verbose

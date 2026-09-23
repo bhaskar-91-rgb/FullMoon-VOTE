@@ -1,0 +1,13 @@
+diff --git a/node_modules/@midnight-ntwrk/compact-runtime/dist/circuit-context.js b/node_modules/@midnight-ntwrk/compact-runtime/dist/circuit-context.js
+index f524d61..9a5d977 100644
+--- a/node_modules/@midnight-ntwrk/compact-runtime/dist/circuit-context.js
++++ b/node_modules/@midnight-ntwrk/compact-runtime/dist/circuit-context.js
+@@ -119,7 +119,7 @@ export const emptyRunningCost = () => ({
+ export const queryLedgerState = (circuitContext, partialProofData, program) => {
+     try {
+         const res = circuitContext.currentQueryContext.query(program, circuitContext.costModel, circuitContext.gasLimit);
+-        circuitContext.currentQueryContext = res.context;
++        if (res.context) { circuitContext.currentQueryContext = res.context; }
+         // @ts-expect-error: We use a hidden variable to track running cost so we can move it to `CircuitResults` at the end
+         circuitContext['gasCost'] = res.gasCost;
+         const reads = res.events.filter((e) => e.tag === 'read');
