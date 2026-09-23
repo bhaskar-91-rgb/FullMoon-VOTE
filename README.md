@@ -1,13 +1,11 @@
-# fullMoon - Private Voting
+# fullMoon — Private Voting on Midnight
 
-# Half Light - Private Voting on Midnight
-
-![CI](https://github.com/singh71priya/Half-Light-Private-Voting-on-Midnight/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/bhaskar-91-rgb/FullMoon-VOTE/actions/workflows/ci.yml/badge.svg)
 
 > A decentralized, privacy-preserving governance platform built on the Midnight Network.
 
 ## Live Demo
-https://half-light-private-voting-on-midnig.vercel.app/
+https://full-moon-vote-frontend.vercel.app/
 
 ## Demo Video
 🎥 [Watch the 1-Minute Walkthrough Video (Google Drive)](https://drive.google.com/file/d/11MNbJvkCL1UbieQZ1uxAZYR0mx3k7JFq/view?usp=sharing)
@@ -18,6 +16,9 @@ https://half-light-private-voting-on-midnig.vercel.app/
 | Preprod  | `332fb482e52e939bbc63a6a6b5094587d059054cfcbd36198605dff12bcce450` |
 
 - 🔍 **Contract on Midnight Explorer:** [View Preprod Contract](https://preprod.midnightexplorer.com/contracts/332fb482e52e939bbc63a6a6b5094587d059054cfcbd36198605dff12bcce450)
+
+## Live On-Chain Transaction
+- 🧾 **openElection Transaction (Midnight Preprod):** [View on 1AM Explorer](https://explorer.1am.xyz/tx/94fe122a915fab186426354aa4eb58280496ec15f5f268ac3ae89df443f17ee1?network=preprod)
 
 ## Screenshots
 
@@ -31,7 +32,7 @@ https://half-light-private-voting-on-midnig.vercel.app/
 ![Test Output](screenshots/test%20output.png)
 
 ## What This Does
-Half Light is a fully private on-chain voting application. It allows authorized participants to cast votes on proposals without revealing their choices to the public ledger. The system uses zero-knowledge proofs to guarantee the integrity of the election: only valid voters can vote, double-voting is prevented, and the final tally accurately reflects the cast votes, all while keeping individual voter choices completely confidential.
+fullMoon is a fully private on-chain voting application. It allows authorized participants to cast votes on proposals without revealing their choices to the public ledger. The system uses zero-knowledge proofs to guarantee the integrity of the election: only valid voters can vote, double-voting is prevented, and the final tally accurately reflects the cast votes, all while keeping individual voter choices completely confidential.
 
 ## Privacy Model
 - **PUBLIC:** The existence of the election, the contract address, the total yes/no tallies, the total turnout, and the list of nullifiers (which prevent double voting).
@@ -44,8 +45,8 @@ An on-chain observer analyzing the ledger can see that transactions are occurrin
 ## Tech Stack
 - **Smart Contract:** Compact (Midnight's ZK-focused language)
 - **Frontend Framework:** React 18, Vite
-- **Styling:** Tailwind CSS, Framer Motion
-- **Blockchain Integration:** `@midnight-ntwrk/midnight-js-contracts` and related SDKs (v4.1.1)
+- **Styling:** Tailwind CSS
+- **Blockchain Integration:** `@midnight-ntwrk/midnight-js-contracts` and related SDKs
 - **Tooling:** TypeScript, Vitest
 
 ## Prerequisites
