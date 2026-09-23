@@ -28,6 +28,10 @@ export interface UseElectionResult {
   closeElection: () => Promise<void>;
 }
 
+/**
+ * Custom hook to manage the full lifecycle of a Midnight election.
+ * Handles state fetching, voting, and admin controls.
+ */
 export function useElection(electionId: string): UseElectionResult {
   const [client] = useState<ElectionClient>(() => createElectionClient(electionId));
   const [state, setState] = useState<ElectionPublicState | null>(null);
