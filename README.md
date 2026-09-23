@@ -1,3 +1,5 @@
+# fullMoon - Private Voting
+
 # Half Light - Private Voting on Midnight
 
 ![CI](https://github.com/singh71priya/Half-Light-Private-Voting-on-Midnight/actions/workflows/ci.yml/badge.svg)
