@@ -1,7 +1,7 @@
 # Product Proposal
 
 ## What is the product, and who uses it?
-Half Light is a fully private, decentralized voting and governance platform. It is designed for DAOs, corporate boards, community groups, and any organization that requires secure, verifiable elections where voter choices must remain strictly confidential. Users include election administrators (who open and close ballots) and authorized voters (who cast their votes using cryptographic secret keys).
+fullMoon is a fully private, decentralized voting and governance platform. It is designed for DAOs, corporate boards, community groups, and any organization that requires secure, verifiable elections where voter choices must remain strictly confidential. Users include election administrators (who open and close ballots) and authorized voters (who cast their votes using cryptographic secret keys).
 
 ## Why Midnight specifically?
 Traditional transparent blockchains (like Ethereum or Cardano) record all transaction details publicly, meaning everyone can see exactly how a specific wallet voted. This lack of privacy makes transparent chains unsuitable for many real-world governance scenarios where ballot secrecy is legally or socially required (e.g., to prevent voter coercion or retaliation). 

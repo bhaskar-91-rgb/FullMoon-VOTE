@@ -10,7 +10,6 @@ jobs:
   contract-compile:
     name: Compile Compact contract
     runs-on: ubuntu-latest
-    continue-on-error: true # toolchain releases move fast; never block the app pipeline on this
     steps:
       - uses: actions/checkout@v4
 
