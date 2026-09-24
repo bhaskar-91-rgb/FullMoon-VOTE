@@ -23,34 +23,28 @@ export default function App() {
     useElection(ELECTION.id);
 
   return (
-    <div className="min-h-screen font-body text-slate-100 selection:bg-accent-primary/30 relative">
+    <div className="min-h-screen font-body text-slate-800 bg-[#f4f7f9] selection:bg-accent-primary/30 relative">
       {/* Animated Background Mesh */}
       <div className="bg-mesh-container">
         <div className="bg-mesh-gradient"></div>
-        <div className="orb orb-1"></div>
-        <div className="orb orb-2"></div>
-        <div className="orb orb-3"></div>
       </div>
-      <header className="border-b border-white/10 bg-black/20 backdrop-blur-xl sticky top-0 z-50 shadow-glass">
+      <header className="border-b border-slate-200 bg-white/80 backdrop-blur-xl sticky top-0 z-50 shadow-sm">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-3">
             <MoonMark />
             <div>
-              <p className="font-display text-2xl font-bold leading-tight text-gradient tracking-wide">fullMoon</p>
-              <p className="text-xs text-glass-mutedText font-medium">Private Voting on Midnight Preprod</p>
+              <p className="font-display text-2xl font-bold leading-tight text-blue-500 tracking-wide">Half Light</p>
+              <p className="text-xs text-slate-500 font-medium">Private Voting on Midnight Preprod</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
             <WalletConnectButton />
-            <span className="hidden sm:inline-flex rounded-full border border-accent-primary/20 bg-accent-primary/5 px-3 py-1 text-xs font-medium text-accent-primary">
-              🌗 Level 3 · First Quarter
-            </span>
           </div>
         </div>
       </header>
 
       {/* Network & Verifiable Contract Banner */}
-      <div className="border-b border-white/10 bg-black/30 px-6 py-2.5 text-xs text-slate-300 backdrop-blur-md">
+      <div className="hidden border-b border-white/10 bg-black/30 px-6 py-2.5 text-xs text-slate-300 backdrop-blur-md">
         <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-2 font-medium">
             <span className="h-2 w-2 rounded-full bg-accent-yes shadow-[0_0_8px_rgba(52,211,153,0.6)] animate-pulse" />
@@ -74,12 +68,11 @@ export default function App() {
       </div>
 
       <main className="mx-auto max-w-5xl px-6 py-10 relative z-10">
-        <section className="mb-10 text-center">
+        <section className="mb-10 text-center mt-12">
           <div className="mb-4 flex flex-wrap justify-center items-center gap-3">
             {state && <StatusBadge status={state.status} />}
-            <span className="rounded-full bg-white/5 px-3 py-1 text-xs font-medium text-slate-300 border border-white/10 shadow-glass">ID: {ELECTION.id}</span>
           </div>
-          <h1 className="font-display text-4xl font-bold leading-tight sm:text-5xl text-white tracking-tight drop-shadow-lg">{ELECTION.title}</h1>
+          <h1 className="font-display text-4xl font-bold leading-tight sm:text-5xl text-slate-800 tracking-tight">{ELECTION.title}</h1>
         </section>
 
         {/* On-Chain Transaction Verification Card */}

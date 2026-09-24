@@ -23,11 +23,11 @@ export function BallotForm({ meta, status, hasVoted, onVote }: Props) {
   }
 
   return (
-    <div className="glass-panel p-8">
-      <h3 className="font-display text-sm font-bold uppercase tracking-widest text-accent-primary">
+    <div className="bg-white/80 rounded-[2rem] border border-white shadow-xl p-8 backdrop-blur-md">
+      <h3 className="font-display text-sm font-bold uppercase tracking-widest text-blue-500">
         Cast your ballot
       </h3>
-      <p className="mt-2 text-sm font-medium text-glass-mutedText">{meta.description}</p>
+      <p className="mt-2 text-sm font-medium text-slate-500">{meta.description}</p>
 
       {hasVoted ? (
         <div className="mt-6 rounded-xl border border-accent-yes/30 bg-emerald-50/50 p-5 text-sm font-medium text-emerald-800 shadow-sm">
@@ -40,7 +40,7 @@ export function BallotForm({ meta, status, hasVoted, onVote }: Props) {
             type="button"
             disabled={disabled}
             onClick={() => handleVote('YES')}
-            className="group flex flex-col items-center gap-1 rounded-2xl border border-accent-yes/40 bg-emerald-50/60 px-4 py-5 font-display font-semibold text-emerald-600 transition-all hover:bg-emerald-100/60 hover:border-accent-yes hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:shadow-none active:scale-95"
+            className="group flex flex-col items-center gap-1 rounded-2xl border border-emerald-200 bg-white px-4 py-5 font-display font-semibold text-emerald-500 transition-all hover:bg-emerald-50 hover:border-emerald-300 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:shadow-none active:scale-95 shadow-sm"
           >
             <span className="text-xl font-bold">{meta.yesLabel}</span>
             <span className="text-[12px] font-medium text-emerald-600/70">
@@ -51,7 +51,7 @@ export function BallotForm({ meta, status, hasVoted, onVote }: Props) {
             type="button"
             disabled={disabled}
             onClick={() => handleVote('NO')}
-            className="group flex flex-col items-center gap-1 rounded-2xl border border-accent-no/40 bg-rose-50/60 px-4 py-5 font-display font-semibold text-rose-600 transition-all hover:bg-rose-100/60 hover:border-accent-no hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:shadow-none active:scale-95"
+            className="group flex flex-col items-center gap-1 rounded-2xl border border-rose-200 bg-white px-4 py-5 font-display font-semibold text-rose-400 transition-all hover:bg-rose-50 hover:border-rose-300 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:shadow-none active:scale-95 shadow-sm"
           >
             <span className="text-xl font-bold">{meta.noLabel}</span>
             <span className="text-[12px] font-medium text-rose-600/70">
@@ -62,7 +62,7 @@ export function BallotForm({ meta, status, hasVoted, onVote }: Props) {
       )}
 
       {status !== 'OPEN' && !hasVoted && (
-        <p className="mt-5 text-sm font-medium text-glass-mutedText">
+        <p className="mt-5 text-sm font-medium text-slate-500">
           {status === 'CREATED' ? 'Voting has not opened yet.' : 'Voting has closed for this election.'}
         </p>
       )}
