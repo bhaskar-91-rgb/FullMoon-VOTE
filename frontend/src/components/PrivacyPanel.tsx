@@ -14,16 +14,16 @@ const HIDDEN = [
 
 export function PrivacyPanel() {
   return (
-    <div className="glass-panel p-8">
-      <h3 className="font-display text-sm font-bold uppercase tracking-widest text-accent-primary">
+    <div className="bg-white/80 rounded-[2rem] border border-white shadow-xl p-8 backdrop-blur-md">
+      <h3 className="font-display text-sm font-bold uppercase tracking-widest text-blue-500">
         Privacy model — full moon brightness
       </h3>
       <div className="mt-6 grid gap-8 sm:grid-cols-2">
         <div>
-          <p className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-accent-secondary">
-            <span className="h-2 w-2 rounded-full bg-accent-secondary shadow-[0_0_8px_rgba(56,189,248,0.5)]" /> What any observer can see
+          <p className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-700">
+            <span className="h-2 w-2 rounded-full bg-slate-400 shadow-sm" /> What any observer can see
           </p>
-          <ul className="space-y-3 text-sm font-medium text-glass-mutedText">
+          <ul className="space-y-3 text-sm font-medium text-slate-500">
             {VISIBLE.map((item) => (
               <li key={item} className="flex gap-3">
                 <span className="mt-0.5 text-accent-secondary text-lg leading-none">◐</span>
@@ -33,10 +33,10 @@ export function PrivacyPanel() {
           </ul>
         </div>
         <div>
-          <p className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-accent-primary">
-            <span className="h-2 w-2 rounded-full bg-accent-primary shadow-[0_0_8px_rgba(129,140,248,0.5)]" /> What stays private, always
+          <p className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-700">
+            <span className="h-2 w-2 rounded-full bg-blue-400 shadow-sm" /> What stays private, always
           </p>
-          <ul className="space-y-3 text-sm font-medium text-glass-mutedText">
+          <ul className="space-y-3 text-sm font-medium text-slate-500">
             {HIDDEN.map((item) => (
               <li key={item} className="flex gap-3">
                 <span className="mt-0.5 text-accent-primary text-lg leading-none">◑</span>

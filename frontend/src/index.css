@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-[#0f172a] text-slate-100 overflow-x-hidden min-h-screen relative;
+    @apply bg-[#f4f7f9] text-slate-800 overflow-x-hidden min-h-screen relative;
   }
 }
 
@@ -29,23 +29,11 @@
 
 /* Background animated elements */
 .bg-mesh-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0;
-  overflow: hidden;
-  background-color: #0f172a;
+  display: none;
 }
 
 .bg-mesh-gradient {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  @apply bg-dark-mesh opacity-80;
+  display: none;
 }
 
 /* Floating Orbs */

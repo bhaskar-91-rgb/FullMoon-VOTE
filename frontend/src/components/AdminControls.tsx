@@ -8,12 +8,12 @@ interface Props {
 
 export function AdminControls({ status, onOpen, onClose }: Props) {
   return (
-    <div className="rounded-3xl border border-dashed border-accent-primary/20 bg-white/40 p-6 backdrop-blur-md shadow-sm">
+    <div className="rounded-[2rem] border border-dashed border-blue-200 bg-white/40 p-6 backdrop-blur-md shadow-sm">
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="font-display text-xs font-bold uppercase tracking-wider text-glass-mutedText">
+        <h3 className="font-display text-xs font-bold uppercase tracking-wider text-slate-500">
           Admin — election organizer
         </h3>
-        <span className="rounded-full bg-accent-primary/10 border border-accent-primary/20 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-accent-primary">
+        <span className="rounded-full bg-blue-50 border border-blue-200 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-blue-500">
           Gated by admin key
         </span>
       </div>
@@ -22,7 +22,7 @@ export function AdminControls({ status, onOpen, onClose }: Props) {
           type="button"
           onClick={onOpen}
           disabled={status !== 'CREATED'}
-          className="flex-1 glass-button px-4 py-3 text-sm disabled:opacity-50 disabled:shadow-none disabled:hover:-translate-y-0 disabled:bg-white/30"
+          className="flex-1 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 font-medium px-4 py-3 text-sm disabled:opacity-50 disabled:shadow-none disabled:bg-slate-100 shadow-sm transition-colors"
         >
           Open voting
         </button>
@@ -30,7 +30,7 @@ export function AdminControls({ status, onOpen, onClose }: Props) {
           type="button"
           onClick={onClose}
           disabled={status !== 'OPEN'}
-          className="flex-1 glass-button px-4 py-3 text-sm disabled:opacity-50 disabled:shadow-none disabled:hover:-translate-y-0 disabled:bg-white/30"
+          className="flex-1 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 font-medium px-4 py-3 text-sm disabled:opacity-50 disabled:shadow-none disabled:bg-slate-100 shadow-sm transition-colors"
         >
           Close voting
         </button>
