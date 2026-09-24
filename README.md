@@ -23,7 +23,7 @@ https://full-moon-vote-frontend.vercel.app/
 ## Screenshots
 
 **Product UI — fullMoon voting dashboard with Glassmorphism design:**
-![Product UI](screenshots/product%20ui.png)
+![Product UI](screenshots/product%20dashboard.png)
 
 **Contract Deployed On-Chain — verified on Midnight Preprod Explorer:**
 ![Contract On Chain](screenshots/contract%20on%20chain.png)
