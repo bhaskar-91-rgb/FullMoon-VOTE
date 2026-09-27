@@ -4,17 +4,17 @@
 
 @layer base {
   body {
-    @apply bg-[#f4f7f9] text-slate-800 overflow-x-hidden min-h-screen relative;
+    @apply bg-slate-950 text-slate-200 overflow-x-hidden min-h-screen relative;
   }
 }
 
 @layer utilities {
   .glass-panel {
-    @apply bg-glass-bg backdrop-blur-xl border border-glass-border shadow-glass rounded-2xl;
+    @apply bg-glass-bg backdrop-blur-2xl border border-glass-border shadow-glass rounded-3xl;
   }
   
   .glass-button {
-    @apply bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 transition-all duration-300 shadow-glass rounded-xl text-white font-medium hover:shadow-glow;
+    @apply bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 transition-all duration-300 shadow-glass rounded-2xl text-white font-medium hover:shadow-glow;
   }
 
   .text-gradient {
@@ -29,11 +29,11 @@
 
 /* Background animated elements */
 .bg-mesh-container {
-  display: none;
+  @apply fixed inset-0 overflow-hidden pointer-events-none;
 }
 
 .bg-mesh-gradient {
-  display: none;
+  @apply absolute inset-0 bg-dark-mesh opacity-60;
 }
 
 /* Floating Orbs */

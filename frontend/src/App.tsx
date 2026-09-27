@@ -23,18 +23,21 @@ export default function App() {
     useElection(ELECTION.id);
 
   return (
-    <div className="min-h-screen font-body text-slate-800 bg-[#f4f7f9] selection:bg-accent-primary/30 relative">
+    <div className="min-h-screen font-body text-slate-200 relative selection:bg-accent-primary/30">
       {/* Animated Background Mesh */}
       <div className="bg-mesh-container">
+        <div className="orb orb-1"></div>
+        <div className="orb orb-2"></div>
+        <div className="orb orb-3"></div>
         <div className="bg-mesh-gradient"></div>
       </div>
-      <header className="border-b border-slate-200 bg-white/80 backdrop-blur-xl sticky top-0 z-50 shadow-sm">
+      <header className="border-b border-white/5 bg-slate-900/40 backdrop-blur-2xl sticky top-0 z-50 shadow-sm">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-3">
             <MoonMark />
             <div>
-              <p className="font-display text-2xl font-bold leading-tight text-blue-500 tracking-wide">Half Light</p>
-              <p className="text-xs text-slate-500 font-medium">Private Voting on Midnight Preprod</p>
+              <p className="font-display text-2xl font-bold leading-tight text-white tracking-wide">Half Light</p>
+              <p className="text-xs text-slate-400 font-medium">Private Voting on Midnight Preprod</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -72,18 +75,18 @@ export default function App() {
           <div className="mb-4 flex flex-wrap justify-center items-center gap-3">
             {state && <StatusBadge status={state.status} />}
           </div>
-          <h1 className="font-display text-4xl font-bold leading-tight sm:text-5xl text-slate-800 tracking-tight">{ELECTION.title}</h1>
+          <h1 className="font-display text-4xl font-bold leading-tight sm:text-5xl text-white tracking-tight">{ELECTION.title}</h1>
         </section>
 
         {/* On-Chain Transaction Verification Card */}
         {lastTxId && (
-          <div className="mb-8 rounded-2xl border border-accent-yes/30 bg-emerald-50/50 p-5 text-emerald-900 backdrop-blur-md shadow-sm">
+          <div className="mb-8 rounded-3xl border border-accent-yes/20 bg-accent-yes/5 p-6 text-emerald-100 backdrop-blur-xl shadow-glass">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-sm text-lg">⛓️</div>
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/5 border border-white/10 shadow-inner text-xl">⛓️</div>
                 <div>
-                  <p className="font-bold text-sm">On-Chain Transaction Confirmed</p>
-                  <p className="text-xs font-mono text-emerald-700/80 mt-0.5">Tx: {lastTxId}</p>
+                  <p className="font-bold text-sm text-emerald-300">On-Chain Transaction Confirmed</p>
+                  <p className="text-xs font-mono text-emerald-400/70 mt-1">Tx: {lastTxId}</p>
                 </div>
               </div>
               {lastExplorerUrl && (
@@ -91,13 +94,13 @@ export default function App() {
                   href={lastExplorerUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="rounded-full border border-emerald-200 bg-white px-4 py-2 text-xs font-bold text-emerald-600 transition-all hover:bg-emerald-50 shadow-sm hover:shadow active:scale-95"
+                  className="rounded-xl border border-emerald-400/20 bg-emerald-400/10 px-5 py-2.5 text-xs font-bold text-emerald-300 transition-all hover:bg-emerald-400/20 shadow-glass hover:shadow-glowYes active:scale-95"
                 >
                   Verify on Explorer ↗
                 </a>
               )}
             </div>
-            {lastMessage && <p className="mt-3 text-sm text-emerald-700 font-medium">{lastMessage}</p>}
+            {lastMessage && <p className="mt-4 text-sm text-emerald-300/80 font-medium">{lastMessage}</p>}
           </div>
         )}
 
@@ -108,7 +111,7 @@ export default function App() {
         )}
         
         {error && (
-          <div role="alert" className="mb-8 rounded-2xl border border-accent-no/30 bg-rose-50/80 p-5 text-sm font-medium text-rose-800 shadow-sm backdrop-blur">
+          <div role="alert" className="mb-8 rounded-2xl border border-accent-no/30 bg-rose-500/10 p-5 text-sm font-medium text-rose-200 shadow-glass backdrop-blur-xl">
             {error}
           </div>
         )}
